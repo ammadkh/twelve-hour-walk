@@ -7,9 +7,8 @@ import { LocationManagerProvider } from "./src/services/location/location.contex
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* <Navigation /> */}
       <LocationManagerProvider>
-        <MapScreen />
+        <Navigation />
       </LocationManagerProvider>
     </ThemeProvider>
   );

@@ -5,9 +5,9 @@ export const fonts = {
 };
 
 export const fontWeights = {
-  regular: 400,
-  medium: 500,
-  bold: 700,
+  regular: "400",
+  medium: "500",
+  bold: "700",
 };
 
 export const fontSizes = {
@@ -32,4 +32,8 @@ export const defaultFontSizes = {
   h3: 45,
   h2: 56,
   h1: 112,
+};
+
+export const imageSize = {
+  small: 44,
 };

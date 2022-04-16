@@ -4,13 +4,7 @@
   "stylers": [
     {
       "visibility": "off"
-  },
-      {
-          "color": "#ffa600"
-      },
-      {
-          "lightness": 40
-      }
+  }
   ]
 },
 {
@@ -19,12 +13,6 @@
   "stylers": [
       {
           "visibility": "off"
-      },
-      {
-          "lightness": 16
-      },
-      {
-          "hue": "#ff0000"
       }
   ]
 },
@@ -57,10 +45,7 @@
           "color": "#000000"
       },
       {
-          "lightness": 17
-      },
-      {
-          "weight": 1.2
+          "weight": 3
       }
   ]
 },
@@ -202,9 +187,6 @@
   "stylers": [
       {
           "color": "#000000"
-      },
-      {
-          "lightness": 17
       }
   ]
 },
@@ -214,9 +196,6 @@
   "stylers": [
       {
           "color": "#000000"
-      },
-      {
-          "lightness": 29
       },
       {
           "weight": 0.2
@@ -229,9 +208,6 @@
   "stylers": [
       {
           "color": "#000000"
-      },
-      {
-          "lightness": 18
       }
   ]
 },
@@ -241,9 +217,6 @@
   "stylers": [
       {
           "color": "#000000"
-      },
-      {
-          "lightness": 16
       }
   ]
 },
@@ -253,9 +226,6 @@
   "stylers": [
       {
           "color": "#000000"
-      },
-      {
-          "lightness": 19
       }
   ]
 },

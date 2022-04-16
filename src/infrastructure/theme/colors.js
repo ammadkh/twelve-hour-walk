@@ -16,6 +16,7 @@ export const colors = {
   bg: {
     primary: "rgb(0,0,0)",
     secondary: "#F1F1F1",
+    tertiary: "rgba(0,0,0, 0.5)",
   },
   text: {
     primary: "rgb(147,147,147)",
@@ -27,6 +28,7 @@ export const colors = {
   },
   icon: {
     primary: "rgb(147,147,147)",
+    secondary: "#FFFFFF",
     success: "#138000",
   },
 };

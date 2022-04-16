@@ -25,4 +25,6 @@ export const defaultSpaces = {
   xxsmall: 5,
   xsmall: 10,
   small: 15,
+  medium: 20,
+  large: 100,
 };

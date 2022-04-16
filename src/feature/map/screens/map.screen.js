@@ -1,16 +1,28 @@
-import React, { useEffect, useRef, useContext } from "react";
-import MapView, { Polyline, PROVIDER_GOOGLE } from "react-native-maps";
-import { StyleSheet, View, Dimensions, Text } from "react-native";
-import { LocationManagerContext } from "../../../services/location/location.context";
-import mapStyles from "./mapStyle.json";
-import { ButtonComponent } from "../../../components/UI/button.component";
-import ProgressCircle from "react-native-progress-circle";
+import React, { useEffect, useContext, createRef } from "react";
 
-export const MapScreen = () => {
+import { LocationManagerContext } from "../../../services/location/location.context";
+import { BottomSheetComponent } from "../components/bottom-sheet/bottom-sheet.component";
+import { MapViewComponent } from "../components/map-view/map-view.component";
+import { Container } from "./map.styles";
+import { DrawerIconContainer } from "./map.styles";
+import { MenuIcon } from "./map.styles";
+
+const setCameraValue = (location) => ({
+  center: {
+    latitude: location.latitude,
+    longitude: location.longitude,
+  },
+  zoom: 18,
+  heading: 20,
+  pitch: 10,
+  altitude: 10,
+});
+
+export const MapScreen = ({ navigation }) => {
   const { location, coordinates, startWalk, getCurrentLocation } = useContext(
     LocationManagerContext
   );
-  const mapRef = useRef(null);
+  const mapRef = createRef(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,91 +32,26 @@ export const MapScreen = () => {
 
   useEffect(() => {
     if (mapRef.current) {
-      const newCamera = {
-        center: {
-          latitude: location.latitude,
-          longitude: location.longitude,
-        },
-        zoom: 18,
-        heading: 0,
-        pitch: 10,
-        altitude: 10,
-      };
-
+      const newCamera = setCameraValue(location);
       mapRef.current.animateCamera(newCamera, { duration: 2000 });
     }
   }, [location]);
 
-  const setNewLocation = () => {
+  const newLocationHandler = () => {
     getCurrentLocation();
   };
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          height: 400,
-          width: "85%",
-          position: "absolute",
-          backgroundColor: "black",
-          bottom: 0,
-          zIndex: 10,
-          borderTopLeftRadius: 200,
-          borderTopRightRadius: 200,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ProgressCircle
-          percent={30}
-          radius={50}
-          borderWidth={8}
-          color="#3399FF"
-          shadowColor="#999"
-          bgColor="#fff"
-        >
-          <Text style={{ fontSize: 18 }}>{"30%"}</Text>
-        </ProgressCircle>
-        <ButtonComponent>Start The 12 Hour Walk</ButtonComponent>
-      </View>
-      <MapView
+    <Container>
+      <MapViewComponent
         ref={mapRef}
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        onUserLocationChange={setNewLocation}
-        showsUserLocation={true}
-        followsUserLocation={true}
-        showsBuildings={false}
-        initialCamera={{
-          center: { latitude: 0, longitude: 0 },
-          pitch: 0,
-          zoom: 0,
-          heading: 0,
-          altitude: 0,
-        }}
-        customMapStyle={mapStyles}
-      >
-        <Polyline
-          coordinates={coordinates}
-          strokeColors={["#28abe2", "#db3e3a"]}
-          strokeColor="#db3e3a"
-          strokeWidth={8}
-        />
-      </MapView>
-    </View>
+        setNewLocation={newLocationHandler}
+        coordinates={coordinates}
+      />
+      <DrawerIconContainer>
+        <MenuIcon onPress={() => navigation.toggleDrawer()} />
+      </DrawerIconContainer>
+      <BottomSheetComponent />
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
-});
