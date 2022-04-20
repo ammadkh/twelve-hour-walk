@@ -1,33 +1,34 @@
 import React, { useEffect, useContext, createRef } from "react";
 
-import { LocationManagerContext } from "../../../services/location/location.context";
-import { BottomSheetComponent } from "../components/bottom-sheet/bottom-sheet.component";
-import { MapViewComponent } from "../components/map-view/map-view.component";
-import { Container } from "./map.styles";
-import { DrawerIconContainer } from "./map.styles";
-import { MenuIcon } from "./map.styles";
+import { LocationManagerContext } from "../../../../services/location/location.context";
+import { CircularProgressComponent } from "../../../circular-progress/screen/circular-progress.screen";
+import { MapViewComponent } from "../../components/map-view/map-view.component";
+import { Container } from "./record-walk.styles";
+import { DrawerIconContainer } from "./record-walk.styles";
+import { MenuIcon } from "./record-walk.styles";
 
 const setCameraValue = (location) => ({
   center: {
     latitude: location.latitude,
     longitude: location.longitude,
   },
-  zoom: 18,
-  heading: 20,
-  pitch: 10,
-  altitude: 10,
+  zoom: 16,
+  heading: 30,
+  pitch: 20,
+  altitude: 20,
 });
 
-export const MapScreen = ({ navigation }) => {
+export const RecordWalkScreen = ({ navigation }) => {
   const { location, coordinates, startWalk, getCurrentLocation } = useContext(
     LocationManagerContext
   );
   const mapRef = createRef(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      startWalk();
-    }, 5000);
+    // setTimeout(() => {
+    startWalk();
+    // }, 5000);
+    // getCurrentLocation();
   }, []);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export const MapScreen = ({ navigation }) => {
       <DrawerIconContainer>
         <MenuIcon onPress={() => navigation.toggleDrawer()} />
       </DrawerIconContainer>
-      <BottomSheetComponent />
+      <CircularProgressComponent navigation={navigation} />
     </Container>
   );
 };

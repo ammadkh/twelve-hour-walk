@@ -1,17 +1,22 @@
 import React, { createContext, useState } from "react";
 import * as TaskManager from "expo-task-manager";
 import * as Location from "expo-location";
+import { EventEmitter } from "fbemitter";
 
 const LOCATION_TASK_NAME = "background-location-task";
-
-export const LocationManagerContext = createContext();
+export const eventEmitter = new EventEmitter();
 
 TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
   if (error) {
     console.log(error, "error");
     return;
   }
+  if (data) {
+    eventEmitter.emit("dataa", data);
+    console.log(data, "data..");
+  }
 });
+export const LocationManagerContext = createContext();
 
 export const LocationManagerProvider = ({ children }) => {
   const [location, setLocation] = useState({
@@ -57,6 +62,17 @@ export const LocationManagerProvider = ({ children }) => {
   };
 
   const startWalk = async () => {
+    this.eventSubscription = eventEmitter.addListener(
+      "dataa",
+      ({ locations }) => {
+        // this.setState({ taskData: data });
+        const { coords } = locations[0];
+        const { latitude, longitude } = coords;
+        // console.log(data, "sdsdssdsdsddssd");
+        setLocation({ latitude, longitude });
+        setCoordinates((prevValue) => [...prevValue, { longitude, latitude }]);
+      }
+    );
     await foregroundPermissionHandler();
     await backgroundPermissionHandler();
     await getCurrentLocation();

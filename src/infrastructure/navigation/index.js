@@ -7,7 +7,9 @@ export const Navigation = () => {
   return (
     <NavigationContainer>
       {/* <AuthenticationNavigation /> */}
+
       <DrawerNavigation />
+      {/* <TabsScreen /> */}
     </NavigationContainer>
   );
 };

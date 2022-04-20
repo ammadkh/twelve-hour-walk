@@ -7,6 +7,7 @@ const defaultTextStyles = (theme) => `
   flex-wrap: wrap;
   margin-top: 0px;
   margin-bottom: 0px;
+  text-align: center;
 `;
 
 const body = (theme) => `

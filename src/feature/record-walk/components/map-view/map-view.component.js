@@ -9,7 +9,7 @@ export const MapViewComponent = forwardRef((props, ref) => {
       ref={ref}
       style={styles.map}
       provider={PROVIDER_GOOGLE}
-      onUserLocationChange={props.setNewLocation}
+      //onUserLocationChange={props.setNewLocation}
       showsUserLocation={true}
       followsUserLocation={true}
       showsBuildings={false}

@@ -118,10 +118,10 @@ export default class CircularProgress extends React.PureComponent {
       <View style={style}>
         <Svg width={size + padding} height={size + padding}>
           <Defs>
-            <LinearGradient id="path" x1="0" y1="0" x2="0" y2="1">
-              <Stop offset="0.0" stopColor="#29ABE2" stopOpacity="0.7" />
-              <Stop offset="0.3" stopColor="#f73b02" stopOpacity="0.8" />
-              <Stop offset="1" stopColor="#f27209" stopOpacity="0.9" />
+            <LinearGradient id="path" x1="0" y1="0" x2="1" y2="1">
+              <Stop offset="0.25" stopColor="#29ABE2" stopOpacity="1" />
+              <Stop offset="0.5" stopColor="#f73b02" stopOpacity="1" />
+              <Stop offset="0.9" stopColor="#f27209" stopOpacity="1" />
             </LinearGradient>
           </Defs>
           <G
@@ -142,7 +142,7 @@ export default class CircularProgress extends React.PureComponent {
             {fill > 0 && (
               <Path
                 d={circlePath}
-                stroke="url(#path)"
+                stroke={"url(#path)"}
                 strokeWidth={width}
                 strokeLinecap={fillLineCap}
                 strokeDasharray={strokeDasharrayTint}
