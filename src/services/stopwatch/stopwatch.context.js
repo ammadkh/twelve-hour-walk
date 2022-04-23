@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import moment from "moment";
 
 export const StopwatchContext = createContext();
@@ -22,6 +22,8 @@ export const StopwatchProvider = ({ children }) => {
   };
 
   const stop = () => {
+    console.log("stiop stop watch");
+    reset();
     setStartStopwatch(false);
   };
 
@@ -32,7 +34,13 @@ export const StopwatchProvider = ({ children }) => {
   const getTimeHandler = (time) => {
     const currentTimeSpent = moment.duration(time).asMilliseconds();
     const totalTimeToSpend = moment.duration(endTime).asMilliseconds();
-    setTimeSpentInPercentage((currentTimeSpent / totalTimeToSpend) * 100);
+    const percentage = (currentTimeSpent / 100000) * 100;
+    console.log(percentage, "percentage");
+    setTimeSpentInPercentage(percentage);
+    if (timeSpentInPercentage > 95) {
+      console.log("spent all the time..");
+      stop();
+    }
   };
 
   return (

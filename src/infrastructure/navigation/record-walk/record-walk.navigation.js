@@ -5,6 +5,7 @@ import { PermissionScreen } from "../../../feature/permissions/screens/permissio
 import { TabsScreen } from "../../../feature/permissions/screens/tabs.screen";
 import { EndWalkScreen } from "../../../feature/record-walk/screens/end-walk/end-walk.screen";
 import { RestartWalkScreen } from "../../../feature/record-walk/screens/restart-walk/restart-walk.screen";
+import { VideoScreen } from "../../../feature/video/video.screen";
 
 const RecordWalkStack = createNativeStackNavigator();
 
@@ -43,6 +44,11 @@ export const RecordWalkNavigation = () => {
         options={transparentScreenStyles}
         name="restart-walk"
         component={RestartWalkScreen}
+      ></RecordWalkStack.Screen>
+      <RecordWalkStack.Screen
+        options={transparentScreenStyles}
+        name="video-screen"
+        component={VideoScreen}
       ></RecordWalkStack.Screen>
     </RecordWalkStack.Navigator>
   );

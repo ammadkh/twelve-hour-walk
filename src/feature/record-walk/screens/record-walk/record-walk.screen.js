@@ -19,17 +19,14 @@ const setCameraValue = (location) => ({
 });
 
 export const RecordWalkScreen = ({ navigation }) => {
-  const { location, coordinates, startWalk, getCurrentLocation } = useContext(
-    LocationManagerContext
-  );
+  const {
+    location,
+    coordinates,
+    startWalk,
+    getCurrentLocation,
+    stopLocationUpdate,
+  } = useContext(LocationManagerContext);
   const mapRef = createRef(null);
-
-  useEffect(() => {
-    // setTimeout(() => {
-    startWalk();
-    // }, 5000);
-    // getCurrentLocation();
-  }, []);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -46,8 +43,9 @@ export const RecordWalkScreen = ({ navigation }) => {
     <Container>
       <MapViewComponent
         ref={mapRef}
-        setNewLocation={newLocationHandler}
+        // setNewLocation={newLocationHandler}
         coordinates={coordinates}
+        location={location}
       />
       <DrawerIconContainer>
         <MenuIcon onPress={() => navigation.toggleDrawer()} />

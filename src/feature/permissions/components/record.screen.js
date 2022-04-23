@@ -1,15 +1,19 @@
 import React from "react";
+import { NavigationContext } from "@react-navigation/native";
+
 import { Layout } from "../../../components/UI/layout.component";
 import { Spacer } from "../../../components/UI/spacer.component";
 import { Text } from "../../../components/UI/typography.component";
 
-export const RecordScreen = ({ navigation }) => {
+export const RecordScreen = () => {
+  const navigation = React.useContext(NavigationContext);
+
   return (
     <Layout
-      navigation={navigation}
       closeIcon
       heading="Record"
       btnTitle="Go to Camera"
+      onPress={() => navigation.navigate("video-screen")}
       icon="videocam-outline"
     >
       <Text style={{ textAlign: "center", color: "white" }}>

@@ -1,10 +1,11 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
+
 import { Layout } from "../../../components/UI/layout.component";
 import { NumberIcon } from "../../../components/UI/number-icon.component";
 import { Spacer } from "../../../components/UI/spacer.component";
 import { Text } from "../../../components/UI/typography.component";
+import { LocationManagerContext } from "../../../services/location/location.context";
 
 const TextCenter = styled(Text)`
   text-align: center;
@@ -13,6 +14,7 @@ const TextCenter = styled(Text)`
 `;
 
 export const PermissionScreen = ({ navigation }) => {
+  const { getPermissions } = useContext(LocationManagerContext);
   return (
     <Layout
       navigation={navigation}
@@ -20,7 +22,8 @@ export const PermissionScreen = ({ navigation }) => {
       img
       heading="Setup"
       btnTitle="Continue"
-      onPress={() => {
+      onPress={async () => {
+        await getPermissions();
         navigation.goBack();
         navigation.navigate("startup-tabs");
       }}

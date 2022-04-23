@@ -10,14 +10,14 @@ export const MapViewComponent = forwardRef((props, ref) => {
       style={styles.map}
       provider={PROVIDER_GOOGLE}
       //onUserLocationChange={props.setNewLocation}
-      showsUserLocation={true}
+      showsUserLocation={props.location.latitude > 0 ? true : false}
       followsUserLocation={true}
       showsBuildings={false}
       initialCamera={{
-        center: { latitude: 0, longitude: 0 },
-        pitch: 0,
+        center: props.location,
         zoom: 0,
         heading: 0,
+        pitch: 0,
         altitude: 0,
       }}
       customMapStyle={mapStyles}

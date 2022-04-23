@@ -81,9 +81,7 @@ class StopWatch extends Component {
     }
 
     this.setState({
-      startTime: this.state.elapsed
-        ? new Date() - this.state.elapsed
-        : new Date(),
+      startTime: new Date(),
       started: true,
     });
 
@@ -98,7 +96,7 @@ class StopWatch extends Component {
   stop() {
     if (this.interval) {
       if (this.props.laps) {
-        this.setState({ stopTime: new Date() });
+        this.setState({ stopTime: new Date(), formatted: "00:00:00" });
       }
 
       clearInterval(this.interval);
@@ -109,16 +107,17 @@ class StopWatch extends Component {
 
   reset() {
     const { startTime } = this.props;
+    console.log(startTime, "star tymmm");
     this.setState({
       elapsed: startTime || 0,
       startTime: null,
       stopTime: null,
       pausedTime: null,
+      formatted: "00:00:00",
     });
   }
 
   formatTime() {
-    console.log("format time..");
     const { getTime, getMsecs, msecs } = this.props;
     const now = this.state.elapsed;
     this.setState({ formatted: formatTimeString(now, msecs) });

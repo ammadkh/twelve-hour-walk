@@ -2,10 +2,9 @@ import React from "react";
 import { Text } from "../../../components/UI/typography.component";
 import { Layout } from "../../../components/UI/layout.component";
 
-export const RestScreen = ({ navigation }) => {
+export const RestScreen = () => {
   return (
     <Layout
-      navigation={navigation}
       closeIcon
       heading="Rest"
       icon="control-pause"

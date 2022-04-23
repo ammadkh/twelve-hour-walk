@@ -1,7 +1,9 @@
 import React from "react";
 import { Image } from "react-native";
 import { Icon } from "@rneui/themed";
+import { NavigationContext } from "@react-navigation/native";
 import styled from "styled-components/native";
+
 import { iconSizes } from "../../infrastructure/theme/sizes";
 import { Text } from "./typography.component";
 import { colors } from "../../infrastructure/theme/colors";
@@ -40,13 +42,12 @@ const MainIcon = styled(Icon).attrs({
 })``;
 
 export const Layout = (props) => {
+  const navigation = React.useContext(NavigationContext);
   return (
     <SafeAreaComponent opacity>
       <Container>
         <CloseWrapper>
-          {props.closeIcon && (
-            <CloseIcon onPress={() => props.navigation.goBack()} />
-          )}
+          {props.closeIcon && <CloseIcon onPress={() => navigation.goBack()} />}
         </CloseWrapper>
         <ContentWrapper>
           {props.icon && (
@@ -68,7 +69,10 @@ export const Layout = (props) => {
 
         <Spacer position="bottom" size="large">
           {props.secondaryBtnTitle && (
-            <ButtonComponent isGradient={false} onPress={props.onPress}>
+            <ButtonComponent
+              isGradient={false}
+              onPress={props.onPressSecondaryBtn}
+            >
               {props.secondaryBtnTitle}
             </ButtonComponent>
           )}

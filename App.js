@@ -7,11 +7,11 @@ import { StopwatchProvider } from "./src/services/stopwatch/stopwatch.context";
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <LocationManagerProvider>
-        <StopwatchProvider>
+      <StopwatchProvider>
+        <LocationManagerProvider>
           <Navigation />
-        </StopwatchProvider>
-      </LocationManagerProvider>
+        </LocationManagerProvider>
+      </StopwatchProvider>
     </ThemeProvider>
   );
 }

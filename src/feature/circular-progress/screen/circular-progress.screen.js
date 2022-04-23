@@ -25,7 +25,7 @@ const Container = styled.View`
 `;
 
 export const CircularProgressComponent = React.memo((props) => {
-  const { start, startStopwatch } = useContext(StopwatchContext);
+  const { startStopwatch } = useContext(StopwatchContext);
   const navigation = React.useContext(NavigationContext);
   return (
     <Container>
@@ -34,7 +34,6 @@ export const CircularProgressComponent = React.memo((props) => {
         <ButtonComponent
           onPress={() => {
             props.navigation.navigate("permissions");
-            start();
           }}
         >
           Start The 12 Hour Walk
