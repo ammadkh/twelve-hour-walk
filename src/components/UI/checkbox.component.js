@@ -24,7 +24,6 @@ const IconContainer = styled(Icon).attrs({
 })``;
 
 export const CheckBoxComponent = (props) => {
-  const [terms, setTerms] = useState(null);
   return (
     <CheckboxContainer
       center
@@ -34,7 +33,7 @@ export const CheckBoxComponent = (props) => {
           name="check"
           type="simple-line-icon"
           color={colors.icon.success}
-          size={iconSizes.small}
+          size={iconSizes.xxsmall}
         />
       }
       uncheckedIcon={
@@ -42,11 +41,11 @@ export const CheckBoxComponent = (props) => {
           name="check"
           type="simple-line-icon"
           color={colors.icon.primary}
-          size={iconSizes.small}
+          size={iconSizes.xxsmall}
         />
       }
-      checked={terms}
-      onPress={() => setTerms(!terms)}
+      checked={props.terms}
+      onPress={props.onPress}
     />
   );
 };

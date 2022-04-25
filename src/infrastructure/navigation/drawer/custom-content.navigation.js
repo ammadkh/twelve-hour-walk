@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -12,6 +12,7 @@ import { Accordion } from "./custom-content.styles";
 import { AccordionListItems } from "./custom-content.styles";
 import { AccordionListItemTitle } from "./custom-content.styles";
 import { LogoutItem } from "./custom-content.styles";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
 const accordianTitle = (
   <>
@@ -30,6 +31,7 @@ const accountListItems = [
 ];
 
 export const CustomDrawerContent = (props) => {
+  const { onLogout } = useContext(AuthenticationContext);
   const [expanded, setExpanded] = useState(false);
   return (
     <DrawerContentScrollView {...props}>
@@ -59,7 +61,7 @@ export const CustomDrawerContent = (props) => {
         ))}
       </Accordion>
 
-      <LogoutItem label="Logout" onPress={() => null} />
+      <LogoutItem label="Logout" onPress={onLogout} />
     </DrawerContentScrollView>
   );
 };

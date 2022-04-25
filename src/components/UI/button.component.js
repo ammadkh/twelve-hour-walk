@@ -1,4 +1,5 @@
 import React from "react";
+import { ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
 
@@ -24,7 +25,12 @@ const LinearGradientWrapper = styled(LinearGradient)`
   align-items: center;
 `;
 
-export const ButtonComponent = ({ onPress, children, isGradient = true }) => {
+export const ButtonComponent = ({
+  onPress,
+  children,
+  isGradient = true,
+  isLoading = false,
+}) => {
   return (
     <ButtonContainer onPress={onPress} isGradient={isGradient}>
       {isGradient && (
@@ -34,7 +40,10 @@ export const ButtonComponent = ({ onPress, children, isGradient = true }) => {
           start={{ x: 0.1, y: 0.1 }}
           locations={[0, 1]}
         >
-          <Text variant="btnLabel">{children}</Text>
+          {!isLoading && <Text variant="btnLabel">{children}</Text>}
+          {isLoading && (
+            <ActivityIndicator style={{ paddingTop: 4 }} color="black" />
+          )}
         </LinearGradientWrapper>
       )}
       {!isGradient && (

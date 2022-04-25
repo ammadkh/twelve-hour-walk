@@ -6,7 +6,7 @@ import { inputSize } from "../../infrastructure/theme/sizes";
 
 const InputWrapper = styled(Input).attrs((props) => ({
   inputContainerStyle: {
-    padding: 12,
+    padding: 5,
     borderBottomWidth: 0,
     height: "100%",
     alignItems: "center",
@@ -31,12 +31,13 @@ export const InputComponent = (props) => {
   return (
     <InputWrapper
       {...props}
+      keyboardAppearance="dark"
       rightIcon={
         props.icon ? (
           <Icon
             type="ionicon"
             name={props.icon}
-            size={20}
+            size={25}
             color={colors.text.primary}
             onPress={props.onPress}
           />
